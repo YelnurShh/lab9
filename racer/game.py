@@ -4,7 +4,7 @@ import random, time
 
 pygame.init()
 
-# Background music 🎵
+# Background music 
 pygame.mixer.music.load('/Users/elnrsahar/Desktop/Python tasks/lab8/racer/background.wav')
 pygame.mixer.music.play(-1)
 
@@ -93,7 +93,7 @@ class Coin(pygame.sprite.Sprite):
         self.image = images[f"coin_{self.coin_type}"]
         self.value = {"gold": 3, "silver": 2, "bronze": 1}[self.coin_type]
         self.rect = self.image.get_rect()
-        self.enemies = enemies  # Дұшпандар тізімін сақтау
+        self.enemies = enemies  
         self.spawn_coin(x_position)
 
     def spawn_coin(self, x_position):
@@ -102,7 +102,7 @@ class Coin(pygame.sprite.Sprite):
             y = random.randint(-200, -50)
             new_rect = pygame.Rect(x_position, y, self.rect.width, self.rect.height)
 
-            # Егер жаңа монета дұшпанмен қабаттасса, жаңа орын іздейміз
+            
             if not any(new_rect.colliderect(enemy.rect) for enemy in self.enemies):
                 self.rect.center = (x_position, y)
                 break
@@ -110,19 +110,19 @@ class Coin(pygame.sprite.Sprite):
     def move(self):
         self.rect.move_ip(0, game_state.speed)
         if self.rect.top > SCREEN_HEIGHT:
-            self.spawn_coin(self.rect.centerx)  # Монетаны қайта орналастыру
+            self.spawn_coin(self.rect.centerx)  
 
 
 P1 = Player()
 E1 = Enemy()
 
-# Дұшпандар тізімін аламыз
+
 enemies = pygame.sprite.Group()
 enemies.add(E1)
 
 coins = pygame.sprite.Group()
 
-# 🔥 3 түрлі монетаны дұшпан көліктерімен тексеріп жасаймыз!
+
 coin_positions = [100, 200, 300]  
 coin_types = ["gold", "silver", "bronze"]  
 
